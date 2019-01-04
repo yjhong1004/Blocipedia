@@ -11,6 +11,17 @@ class WikisController < ApplicationController
     @wiki = Wiki.new
   end
 
+  def create
+    @wiki = Wiki.new()
+    if @wiki.save
+      redirect_to @wiki, notice: "Wiki saved!"
+    else
+      flash.now[:alert] = "Wiki is not saved!"
+      render :new
+    end
+  end
+
+
   def edit
     @wiki = Wiki.find(params[:id])
   end
@@ -33,7 +44,7 @@ class WikisController < ApplicationController
 
      if @wiki.destroy
        flash[:notice] = "\"#{@wiki.title}\" was deleted successfully."
-       redirect_to wikis_path
+       redirect_to wikis_show_path
      else
        flash.now[:alert] = "There was an error deleting the wiki."
        render :show

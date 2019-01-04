@@ -105,7 +105,7 @@ RSpec.describe WikisController, type: :controller do
 
      it "redirects to wikis index" do
        delete :destroy, {id: my_wiki.id}
-       expect(response).to redirect_to wikis_path
+       expect(response).to redirect_to wikis_show_path
      end
    end
 

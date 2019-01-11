@@ -12,6 +12,7 @@ class WikisController < ApplicationController
   end
 
   def create
+    puts "im here"
     @wiki = Wiki.new(wiki_params)
     if @wiki.save
       flash[:notice] = "Wiki was saved!"

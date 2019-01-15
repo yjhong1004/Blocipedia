@@ -1,4 +1,4 @@
-require 'random_data'
+
 #Create Users
 15.times do
   user = User.new(

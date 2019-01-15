@@ -1,24 +1,27 @@
 require 'random_data'
 #Create Users
 15.times do
-  User.create!(
-    name: RandomData.random_name,
-    email: RandomData.random_email,
-    password: RandomData.random_sentence
+  user = User.new(
+    email: Faker::Internet.unique.email,
+    password: 'helloworld',
+    password_confirmation: 'helloworld'
   )
+  user.skip_confirmation!
+  user.save!
 end
+users = User.all
 
- # Create Wikis
- 50.times do
+100.times do
+  wiki = Wiki.new(
+    user: users.sample,
+    title: Faker::Lorem.sentence,
+    body: Faker::Lorem.paragraph,
+    private: false
+  )
+  wiki.save!
 
-   Wiki.create!(
 
-     title:  RandomData.random_sentence,
-     body:   RandomData.random_paragraph,
-     private: false
-   )
- end
- wikis = Wiki.all
+end
 
 
  puts "Seed finished"

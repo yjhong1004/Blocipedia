@@ -8,8 +8,9 @@ class User < ApplicationRecord
   after_initialize :init
 
   def init
+    #this sets the default role if it's nil
     self.role ||= 0.0
   end
 
-  enum role: [:member]
+  enum role: [:admin, :standard, :premium]
 end

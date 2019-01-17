@@ -1,7 +1,8 @@
 class WikisController < ApplicationController
   def index
     puts "index action is running"
-    @wikis = Wiki.all
+    # @wikis = Wiki.all
+    @wikis = policy_scope(Wiki)
   end
 
   def show
@@ -10,12 +11,14 @@ class WikisController < ApplicationController
 
   def new
     @wiki = Wiki.new
+    authorize @wiki
   end
 
   def create
   puts "im here"
   @wiki = Wiki.new(wiki_params)
   @wiki.user = current_user
+  authorize @wiki
   if @wiki.save
     flash[:notice] = "Wiki was saved!"
     redirect_to @wiki
@@ -27,6 +30,7 @@ end
 
   def edit
     @wiki = Wiki.find(params[:id])
+    authorize @wiki
   end
 
   def update
@@ -45,7 +49,7 @@ end
   end
   def destroy
      @wiki = Wiki.find(params[:id])
-
+     authorize @wiki
      if @wiki.destroy
        flash[:notice] = "\"#{@wiki.title}\" was deleted successfully."
        redirect_to wikis_path

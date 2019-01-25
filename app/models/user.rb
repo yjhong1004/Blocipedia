@@ -12,5 +12,5 @@ class User < ApplicationRecord
     self.role ||= 0.0
   end
 
-  enum role: [:admin, :standard, :premium]
+  enum role: [:standard, :admin, :premium]
 end

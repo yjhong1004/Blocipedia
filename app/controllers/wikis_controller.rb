@@ -31,9 +31,11 @@ class WikisController < ApplicationController
 end
 
   def edit
-    authorize @wiki
-    @wiki = Wiki.find(params[:id])
+    
+    if policy(Wiki.find(params[:id])).edit?
+          @wiki = Wiki.find(params[:id])
 
+    end
 
   end
 

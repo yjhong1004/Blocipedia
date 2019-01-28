@@ -1,5 +1,5 @@
 class WikisController < ApplicationController
-    skip_before_action :authenticate_user!, only: [:index]
+    # skip_before_action :authenticate_user!, only: [:index]
 
   def index
     puts "index action is running"
@@ -31,7 +31,7 @@ class WikisController < ApplicationController
 end
 
   def edit
-    
+
     if policy(Wiki.find(params[:id])).edit?
           @wiki = Wiki.find(params[:id])
 

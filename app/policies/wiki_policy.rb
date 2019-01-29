@@ -36,9 +36,9 @@ class WikiPolicy < ApplicationPolicy
 
     def resolve
       if user.nil? || user.admin? || user.premium? || user.standard?
-        scope.all
-      else
-      scope.where(private: false)
+        scope.where(private: false)
+      elsif user.premium?
+        scope.where(private: true)
       end
     end
   end

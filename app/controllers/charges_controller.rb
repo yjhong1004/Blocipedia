@@ -25,7 +25,7 @@ class ChargesController < ApplicationController
    current_user.update_attribute(:role, 'premium')
 
    flash[:notice] = "Thanks for all the money, #{current_user.email}! Feel free to pay me again."
-   redirect_to user_path(current_user) # or wherever
+   redirect_to root_path # or wherever
 
    # Stripe will send back CardErrors, with friendly messages
    # when something goes wrong.
@@ -35,13 +35,13 @@ class ChargesController < ApplicationController
      redirect_to new_charge_path
   end
 
-  # def downgrade
-  #   current_user.wikis.each |wiki| {
-  #     wiki.update_attribute(:private, false)
-  #   }
-  #   current_user.update_attribute(:role, 'member')
-  #   flash[:notice] = "#{current_user.email} have downgraded to the standard membership."
-  #   redirect_to @wiki
-  # end
+  def downgrade
+    current_user.wikis.each |wiki| {
+      wiki.update_attribute(:private, false)
+    }
+    current_user.update_attribute(:role, 'standard')
+    flash[:notice] = "#{current_user.email} have downgraded to the standard membership."
+    redirect_to @wiki
+  end
 
 end

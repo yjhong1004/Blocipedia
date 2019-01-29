@@ -16,6 +16,8 @@ class WikisController < ApplicationController
     authorize @wiki
   end
 
+  
+
   def create
   puts "im here"
   @wiki = Wiki.new(wiki_params)

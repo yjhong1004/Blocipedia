@@ -35,14 +35,11 @@ class ChargesController < ApplicationController
      redirect_to new_charge_path
   end
 
-  def destroy
-    current_user = User.find(params[:id])
-    current_user.wikis.each |wiki| {
-      wiki.update_attribute(:private, false)
-    }
+  def downgrade
+  
     current_user.update_attribute(:role, 'standard')
     flash[:notice] = "#{current_user.email} have downgraded to the standard membership."
-    redirect_to @wiki
+    redirect_to new_charge_path
   end
 
 

@@ -1,3 +1,9 @@
+
+<% if flash[:alert] %>
+    <div id="alert">
+         <%= flash[:alert] %>
+      </div>
+<% end %>
 <h1><%= @wiki.title %></h1>
 
  <div class="row">

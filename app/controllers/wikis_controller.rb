@@ -16,7 +16,7 @@ class WikisController < ApplicationController
     authorize @wiki
   end
 
-  
+
 
   def create
   puts "im here"
@@ -24,10 +24,10 @@ class WikisController < ApplicationController
   @wiki.user = current_user
   authorize @wiki
   if @wiki.save
-    flash[:notice] = "Wiki was saved!"
+    flash[:alert] = "Wiki was saved!"
     redirect_to @wiki
   else
-    flash[:notice] = "There was an error saving the wiki!"
+    flash[:alert] = "There was an error saving the wiki!"
     render :new
   end
 end
@@ -48,7 +48,7 @@ end
 
     authorize @wiki
      if @wiki.save
-       flash[:notice] = "Wiki was updated."
+       flash[:alert] = "Wiki was updated."
        redirect_to @wiki
      else
        flash.now[:alert] = "There was an error saving the wiki. Please try again."
@@ -59,7 +59,7 @@ end
      @wiki = Wiki.find(params[:id])
      authorize @wiki
      if @wiki.destroy
-       flash[:notice] = "\"#{@wiki.title}\" was deleted successfully."
+       flash[:alert] = "\"#{@wiki.title}\" was deleted successfully."
        redirect_to wikis_path
      else
        flash.now[:alert] = "There was an error deleting the wiki."

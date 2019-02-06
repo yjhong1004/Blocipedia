@@ -35,10 +35,10 @@ class WikiPolicy < ApplicationPolicy
     end
 
     def resolve
-      if user.nil? || user.admin? || user.premium? || user.standard?
-        scope.where(private: false)
-      elsif user.premium?
-        scope.where(private: true)
+      if user.nil? || user.standard?
+        scope.where(private: [false, nil])
+      elsif user.admin? || user.premium?
+        scope.where(private: [false, nil, true])
       end
     end
   end

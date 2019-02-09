@@ -6,8 +6,8 @@ ruby '2.5.1'
 gem 'stripe'
 
 gem 'pundit'
-
-gem 'bootstrap'
+gem 'bootstrap-sass', '~> 3.4.0'
+gem 'sassc-rails', '>= 2.0.0'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.2.1'

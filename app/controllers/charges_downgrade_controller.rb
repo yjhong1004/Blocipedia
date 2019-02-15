@@ -1,7 +1,9 @@
 class ChargesDowngradeController < ApplicationController
-  before_action :authenticate_user!
+  
   def downgrade_user
-    wiki = Wiki.new
-    wiki.downgrade
+
+    current_user.downgrade
+    flash[:notice] = "#{current_user.email} have downgraded to the standard membership."
+    redirect_to new_charge_path
   end
 end

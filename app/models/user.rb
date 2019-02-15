@@ -12,5 +12,13 @@ class User < ApplicationRecord
     self.role ||= 0.0
   end
 
+  def downgrade
+
+    self.wikis.update_all(private: false )
+    self.update_attribute(:role, 'standard')
+
+    
+  end
+
   enum role: [:standard, :admin, :premium]
 end

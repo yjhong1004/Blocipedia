@@ -3,7 +3,6 @@ class WikisController < ApplicationController
 
   def index
     puts "index action is running"
-    # @wikis = Wiki.all
     @wikis = policy_scope(Wiki)
   end
 

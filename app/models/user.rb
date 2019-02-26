@@ -6,6 +6,8 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable, :confirmable
   has_many :wikis
   has_many :collaborators
+  has_many :wikis, through: :collaborators
+
   after_initialize :init
 
   def init

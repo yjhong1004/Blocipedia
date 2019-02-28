@@ -5,7 +5,7 @@ class CollaboratorsController < ApplicationController
     puts params[:collaborator][:wiki_id]
     @wiki = Wiki.find(params[:collaborator][:wiki_id])
     @user = User.find(params[:collaborator][:user_id])
-    @collaborator = Collaborator.new(user_id: @user, wiki_id: @wiki)
+    @collaborator = Collaborator.new(user: @user, wiki: @wiki)
     if @collaborator.save
       flash[:notice] = "#{@user.name} is saved!"
       redirect_to wiki_path

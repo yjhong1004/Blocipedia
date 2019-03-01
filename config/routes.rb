@@ -3,8 +3,8 @@ Rails.application.routes.draw do
   delete 'charges_downgrade/downgrade'
   root "home#index"
   resources :wikis do
-  resources :collaborators, only: [:create, :destroy]
-  get 'collaborators/create'
+    resources :collaborators, only: [:create, :destroy]
+    get 'collaborators/create'
   end
   devise_for :users
 end

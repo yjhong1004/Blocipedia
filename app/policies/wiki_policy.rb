@@ -27,23 +27,25 @@ class WikiPolicy < ApplicationPolicy
   end
 
   class Scope
-    attr_reader :user, :scope
+     attr_reader :user, :scope
 
-    def initialize(user, scope)
-      @user = user
-      @scope = scope
-    end
+     def initialize(user, scope)
+       @user = user
+       @scope = scope
+     end
 
-    def resolve
-      if user.nil? || user.standard?
-        scope.where(private: [false, nil])
-      elsif user.admin? || user.premium?
-        scope.where(private: [false, nil, true])
-      end
-    end
-  end
+     def resolve
+       wikis = []
+       if user.role == 'admin'
+         wikis = scope.all
+       elsif user.role == 'premium'
+          scope.where(private: [false, nil] || wiki.owner == user || wiki.collaborators.include?(user))
+       elsif user.role == 'standard'
+         scope.where(private: [false, nil] || wiki.collaborators.include?(user))
+       else
+         scope.where(private: [false, nil])
+       end
+     end
+   end
 
-  def update?
-    user.standard?
-  end
 end

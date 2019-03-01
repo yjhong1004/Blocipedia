@@ -4,7 +4,6 @@ class WikisController < ApplicationController
 
   def index
     puts "index action is running"
-    # @wikis = Wiki.all
     @wikis = policy_scope(Wiki)
   end
 
@@ -34,11 +33,12 @@ class WikisController < ApplicationController
 end
 
   def edit
-
+    p params
     if policy(Wiki.find(params[:id])).edit?
           @wiki = Wiki.find(params[:id])
 
     end
+
 
   end
 

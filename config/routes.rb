@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   resources :wikis do
     resources :collaborators, only: [:create, :destroy]
     get 'collaborators/create'
+    get 'collaborators/destroy'
   end
   devise_for :users
 end

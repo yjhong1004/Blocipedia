@@ -26,4 +26,11 @@
        <%= f.submit "Save", class: 'btn btn-success' %>
      <% end %>
    </div>
+   <% @wiki.collaborators.each do |c| %>
+      <% user = User.find(c.user_id) %>
+      <li class='col-md-4'>
+        <%= user.email %>
+        <%= link_to "Delete", wiki_collaborator_path(@wiki, c), class: 'btn btn-danger', method: :delete%>
+      </li>
+    <% end %>
  </div>

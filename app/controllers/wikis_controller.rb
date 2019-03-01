@@ -32,11 +32,12 @@ class WikisController < ApplicationController
 end
 
   def edit
-
+    p params
     if policy(Wiki.find(params[:id])).edit?
           @wiki = Wiki.find(params[:id])
 
     end
+
 
   end
 

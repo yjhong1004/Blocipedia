@@ -1,14 +1,12 @@
 class CollaboratorsController < ApplicationController
 
   def create
-    puts params[:collaborator][:user_id]
-    puts params[:collaborator][:wiki_id]
-    wiki = Wiki.find(params[:wiki_id])
+    @wiki = Wiki.find(params[:wiki_id])
     @user = User.find_by(email: params[:collaborator][:user] )
     @collaborator = Collaborator.new(user: @user, wiki: @wiki)
     if @collaborator.save
-      flash[:notice] = "#{@user.name} is saved!"
-      redirect_to wiki_path
+      flash[:notice] = "Collaborator is saved!"
+      redirect_to edit_wiki_path(@wiki)
     else
       flash[:error] = "Something went wrong!"
       render template: "wikis/edit"

@@ -2,6 +2,7 @@ class WikisController < ApplicationController
 
   #skip_before_action :authenticate_user!, only: [:index]
 
+
   def index
     puts "index action is running"
     @wikis = policy_scope(Wiki)
@@ -14,6 +15,7 @@ class WikisController < ApplicationController
   def new
     @wiki = Wiki.new
     authorize @wiki
+    #blocmetrics.report('new page loaded')
   end
 
 

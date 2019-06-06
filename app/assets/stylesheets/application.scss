@@ -1,2 +1,27 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
+
+html {
+overflow-y: scroll;
+}
+
+
+body {
+  padding-top: 60px;
+  background-color: #fefefe;
+}
+
+.jumbotron {
+  background-image: url(https://images.pexels.com/photos/1161465/pexels-photo-1161465.jpeg);
+  height: 250px;
+  color: black;
+  background-repeat: no-repeat;
+  background-size: cover;
+  border-radius: 0 !important;
+  font-weight: bold;
+  text-align: center;
+  margin-top: -9px;
+  p {
+  color: black;
+  }
+}

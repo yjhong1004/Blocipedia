@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
-ruby '2.5.1'
+ruby '2.6.5'
 
 gem 'stripe'
 gem 'redcarpet'
@@ -13,7 +13,7 @@ gem 'sassc-rails', '>= 2.0.0'
 gem 'rails', '~> 5.2.1'
 # Use devise for authentication
 gem 'devise'
-# Use sqlite3 as the database for Active Record
+
 
 # Use Puma as the app server
 gem 'puma', '~> 3.11'
@@ -59,7 +59,7 @@ group :development, :test do
   gem 'faker'
   gem 'factory_bot'
   gem 'pry-rails'
-  gem 'sqlite3'
+  gem 'pg'
 
 end
 
